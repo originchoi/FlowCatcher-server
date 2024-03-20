@@ -1,12 +1,14 @@
 const express = require("express");
 
 const router = express.Router();
+
 const verifyApiKey = require("../middlewares/verifyApiKey");
 const Session = require("../models/Session");
 
 router.post("/sessions", verifyApiKey, async function (req, res, next) {
+  const { projectId } = req.body;
+
   try {
-    const { projectId } = req.body;
     const newSession = new Session({ projectId });
     const savedSession = await newSession.save();
 
