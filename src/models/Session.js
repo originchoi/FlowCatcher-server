@@ -10,8 +10,13 @@ const sessionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  endTime: {
+  lastUpdated: {
     type: Date,
+    default: Date.now,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
   },
   pageViews: [
     {
