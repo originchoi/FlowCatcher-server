@@ -1,7 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
+
 const PageView = require("../models/PageView");
+const Session = require("../models/Session");
 
 router.post("/pageviews", async function (req, res, next) {
   try {
@@ -13,6 +15,8 @@ router.post("/pageviews", async function (req, res, next) {
       referrer,
     });
     const savedPageView = await newPageView.save();
+
+    await Session.findByIdAndUpdate(sessionId, { lastUpdated: new Date() });
 
     res.status(201).json(savedPageView);
   } catch (error) {
