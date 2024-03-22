@@ -8,6 +8,7 @@ const Session = require("../models/Session");
 const PageView = require("../models/PageView");
 
 const { validateProjectName } = require("../utils/validationUtils");
+const { generateScriptCode } = require("../utils/scriptCodeUtils");
 
 router.post("/:userid/projects", async function (req, res, next) {
   const { userid } = req.params;
@@ -28,8 +29,16 @@ router.post("/:userid/projects", async function (req, res, next) {
     });
 
     const savedProject = await newProject.save();
+    const scriptCode = generateScriptCode({
+      userId: userid,
+      projectId: savedProject._id.toString(),
+      apiKey,
+    });
 
-    return res.status(201).json(savedProject);
+    return res.status(201).json({
+      project: savedProject,
+      scriptCode,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: error.message });
