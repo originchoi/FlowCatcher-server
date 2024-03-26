@@ -16,7 +16,11 @@ router.post("/pageviews", async function (req, res, next) {
     });
     const savedPageView = await newPageView.save();
 
-    await Session.findByIdAndUpdate(sessionId, { lastUpdated: new Date() });
+    await Session.findByIdAndUpdate(sessionId, {
+      $push: { pageViews: savedPageView._id },
+      lastUpdated: new Date(),
+      lastPageViewId: savedPageView._id,
+    });
 
     res.status(201).json(savedPageView);
   } catch (error) {
