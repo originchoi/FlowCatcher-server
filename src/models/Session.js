@@ -24,6 +24,10 @@ const sessionSchema = new mongoose.Schema({
       ref: "PageView",
     },
   ],
+  lastPageViewId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "PageView",
+  },
 });
 
 module.exports = mongoose.model("Session", sessionSchema);
