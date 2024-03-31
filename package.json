@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "lint-staged": "lint-staged",
     "dev": "NODE_ENV=development nodemon ./bin/www",
-    "prepare": "husky install"
+    "prepare": "husky install || true"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
