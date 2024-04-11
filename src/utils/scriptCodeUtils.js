@@ -40,7 +40,7 @@ exports.generateScriptCode = ({ userId, projectId, apiKey }) => {
 
         try {
           const sessionResponse = await postData(
-            "http://localhost:3000/api/sessions",
+            "https://api.flow-catcher.com/api/sessions",
             {
               userId,
               projectId,
@@ -58,7 +58,7 @@ exports.generateScriptCode = ({ userId, projectId, apiKey }) => {
       }
 
       try {
-        await postData("http://localhost:3000/api/pageviews", {
+        await postData("https://api.flow-catcher.com/api/pageviews", {
           sessionId: sessionStorage.getItem("sessionId"),
           url: currentUrl,
           pageTitle,
