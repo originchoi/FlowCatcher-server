@@ -7,7 +7,13 @@ const CONFIG = require("../constants/config");
 async function connectExpress(app) {
   app.use(
     cors({
-      origin: [CONFIG.CLIENT_URL, CONFIG.TEST_URL_1, CONFIG.TEST_URL_2],
+      origin: (origin, callback) => {
+        if (!origin || /^https:\/\/.+/.test(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"), false);
+        }
+      },
       credentials: true,
     }),
   );
