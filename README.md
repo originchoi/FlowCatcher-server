@@ -252,16 +252,6 @@ History API는 history 글로벌 오브젝트를 이용하여 브라우저의 �
 
 #### 2. 페이지뷰 추적코드
 
-추적코드는 아래의 다이어그램과 같은 흐름으로 동작합니다.
-
-<p align="center">
-  <img width="700" alt="페이흐름추적도식" src="https://github.com/originchoi/FlowCatcher-client/assets/116258834/8b6522e3-b0fb-42ce-b603-54f78fb00ecc">
-</p>
-
-해당 다이어그램에 대한 코드와 설명은 아래와 같습니다.
-
-</br>
-
 - History API 메서드 오버라이딩
 
 ```javascript
@@ -320,10 +310,6 @@ handleLocationChange 함수는 페이지 위치 변경이 감지될 때마다 �
 - 광범위한 브라우저 호환성: History API는 대부분의 현대 브라우저에서 지원되므로, 다양한 환경에서 일관되게 동작할 수 있었습니다. 이는 React와 같은 특정 라이브러리에 종속되지 않고, 보다 넓은 범위의 웹 애플리케이션에서 사용할 수 있는 장점이 있습니다.
 - 서버 요청 최적화: 디바운스(debounce) 기법을 사용하여 고속으로 발생하는 URL 변경을 효과적으로 처리함으로써, 중복된 서버 요청을 방지하고, 불필요한 데이터 전송을 최소화할 수 있었습니다. 이를 통해 서버의 부하를 줄이고 성능을 최적화할 수 있었습니다.
 
-#### 개선할 부분
-
-- SPA 외부 환경에서의 제한: History API는 주로 클라이언트 사이드에서 작동합니다. 서버 사이드 렌더링(SSR) 환경에서의 테스트를 하지 못하여, SSR 환경에서 직접적인 적용이 어려울 수 있다고 판단됩니다. 이를 보완하기 위해서는 SSR이나 호환될 수 있는 보조적인 추적 방법을 고려해야 할 필요가 있습니다. 추후 개선할 예정입니다.
-
 <br />
 <br />
 
@@ -373,7 +359,6 @@ function checkSessionTimeout() {
 
   if (currentTime - lastActivityTime > timeoutThreshold) {
     // 세션 종료 로직
-    console.log("세션이 종료되었습니다.");
   }
 }
 
@@ -409,7 +394,6 @@ cron.schedule("*/5 * * * *", async () => {
     { lastUpdated: { $lt: thresholdTime }, isActive: true },
     { isActive: false },
   );
-  console.log("세션 상태가 업데이트되었습니다.");
 });
 ```
 
