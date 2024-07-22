@@ -1,14 +1,28 @@
 const express = require("express");
 
 const router = express.Router();
-const crypto = require("crypto");
+const dns = require("dns").promises;
 
 const Project = require("../models/Project");
 const Session = require("../models/Session");
 const PageView = require("../models/PageView");
 
 const { validateProjectName } = require("../utils/validationUtils");
-const { generateScriptCode } = require("../utils/scriptCodeUtils");
+const { generateScriptCode } = require("../utils/generateScriptCode");
+
+async function checkDomainExistence(domain) {
+  if (!domain) return false;
+
+  try {
+    await dns.lookup(domain);
+    return true;
+  } catch (error) {
+    if (error.code === "ENOTFOUND") {
+      return false;
+    }
+    throw error;
+  }
+}
 
 router.post("/:userid/projects", async function (req, res, next) {
   const { userid } = req.params;
@@ -20,19 +34,13 @@ router.post("/:userid/projects", async function (req, res, next) {
   }
 
   try {
-    const apiKey = crypto.randomUUID();
-
     const newProject = new Project({
       userId: userid,
       projectName,
-      apiKey,
     });
-
     const savedProject = await newProject.save();
     const scriptCode = generateScriptCode({
-      userId: userid,
       projectId: savedProject._id.toString(),
-      apiKey,
     });
 
     return res.status(201).json({
@@ -40,7 +48,6 @@ router.post("/:userid/projects", async function (req, res, next) {
       scriptCode,
     });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ error: error.message });
   }
 });
@@ -52,7 +59,6 @@ router.get("/:userid/projects", async function (req, res, next) {
 
     return res.status(200).json(projects);
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ error: error.message });
   }
 });
@@ -68,11 +74,17 @@ router.delete("/:userid/projects/:projectid", async function (req, res, next) {
     await Session.deleteMany({ _id: { $in: sessionIds } });
     await Project.findByIdAndDelete(projectid);
 
-    return res.status(200).json({ message: "API key has been deleted" });
+    return res.status(200).json({ message: "Project has been deleted" });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ error: error.message });
   }
+});
+
+router.get("/domains/validate", async function (req, res) {
+  const { domain } = req.query;
+  const isValid = await checkDomainExistence(domain);
+
+  res.json({ isValid });
 });
 
 module.exports = router;
