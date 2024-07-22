@@ -16,11 +16,6 @@ const projectSchema = new mongoose.Schema({
       message: "영문자(대소문자), 숫자, 한글만 사용할 수 있습니다.",
     },
   },
-  apiKey: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   createdAt: {
     type: Date,
     default: Date.now,

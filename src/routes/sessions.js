@@ -1,11 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
-
-const verifyApiKey = require("../middlewares/verifyApiKey");
 const Session = require("../models/Session");
 
-router.post("/sessions", verifyApiKey, async function (req, res, next) {
+router.post("/sessions", async function (req, res) {
   const { projectId } = req.body;
 
   try {
