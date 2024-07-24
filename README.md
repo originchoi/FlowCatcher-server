@@ -10,7 +10,7 @@
 
 <br />
 
-내 웹사이트를 통해 어떤 사용자 행동이 일어나고 있는지,
+내 웹사이트에서 사용자들이 어떤 흐름으로 이동하는지,
 
 그리고 이러한 행동이 전환율에 어떤 영향을 미치는지
 
@@ -77,7 +77,6 @@
   <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white">
   <img src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB">
   <img src="https://img.shields.io/badge/MongoDB%20&%20Mongoose-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white">
-  <img src="https://img.shields.io/badge/Uglify.js-%23000000.svg?style=for-the-badge&logoColor=white">
 </div>
 
 ### **Deployment**
@@ -101,12 +100,16 @@
 
 ## FlowCatcher를 만들게 된 계기
 
+Hotjar와 Google Analytics는 사용자 행동을 분석하고 시각화하는 데 뛰어난 도구입니다. </br>그러나 이러한 도구들이 제공하는 데이터는 방대하고 복잡하여, 이를 해석하고 활용하는 데 많은 시간과 노력이 필요합니다.
+
+특히, 웹사이트 내에서의 사용자 흐름을 한눈에 이해하기는 쉽지 않습니다.
+
 웹사이트 사용자들은 모두 제각기 다른 흐름으로 페이지를 탐색합니다.
 
 그렇다면 내가 만든 웹 사이트에서 사용자들이 어떤 흐름으로 어떤 페이지에 흥미를 가지고
 탐색할까요?
 
-또한, 그 흐름들을 한 곳에서 눈으로 볼 수 있다면 얼마나 좋을까요?
+또한, 그 흐름들을 한 곳에서 쉽게 눈으로 볼 수 있다면 얼마나 좋을까요?
 
 이러한 동기에서 시작된 프로젝트가 바로 FlowCatcher입니다. </br>FlowCatcher는 웹사이트 내 사용자 흐름을 시각화하여, 사용자 행동을 한눈에 파악할 수 있게 해줍니다.
 </br>
@@ -121,28 +124,28 @@
 
 ### [프로젝트 생성 및 추적 서비스 코드 발급 및 적용]
 
-![servicecode_issued](https://github.com/originchoi/FlowCatcher-client/assets/116258834/e5f47d98-3842-464c-8786-5606cb3c4a7e)
+![servicecode_issued](https://github.com/user-attachments/assets/2c53c159-f6d7-4dc1-830b-6b5d830ca9cf)
 
-- 본인의 웹사이트에 사용할 서비스 코드를 발급받기 위해 사용자는 프로젝트를 만들 수 있습니다.
-- 프로젝트별로 서비스 코드를 발급 받을 수 있고, copy 버튼으로 복사할 수 있습니다.
+- 본인의 웹사이트에 사용할 추적 코드를 발급받기 위해 사용자는 프로젝트를 만들 수 있습니다.
+- 프로젝트별로 추적 코드를 발급 받을 수 있고, copy 버튼으로 복사할 수 있습니다.
 
 <br />
 <br />
 
-![servicecode_apply](https://github.com/originchoi/FlowCatcher-client/assets/116258834/031924a5-8a35-47a7-b412-4c691a7965f5)
+![servicecode_apply](https://github.com/user-attachments/assets/8acabffc-9f81-4831-a98f-5e98d9f75827)
 
-- 발급받은 서비스 코드(스크립트 코드)를 사용자의 비즈니스 웹사이트에 붙여넣기 하여 사용합니다.
+- 발급받은 추적 코드(스크립트 코드)를 사용자의 비즈니스 웹사이트에 붙여넣기 하여 사용합니다.
 
 <br />
 <br />
 
 ### [웹사이트 사용자 행동 데이터를 기반으로 페이지 이동 흐름을 시각화 (행동 흐름 분석)]
 
-![analytics_behavior](https://github.com/originchoi/FlowCatcher-client/assets/116258834/04a68277-2059-4002-9c68-cb64b8982db5)
+![behavior_analytics](https://github.com/user-attachments/assets/72e61353-03f1-4c41-a9dd-de4c0b334694)
 
 - 행동 흐름 분석 탭에서 서비스 코드를 적용한 웹 사이트 내 방문자들의 페이지 이동 흐름을 볼 수 있습니다.
 - 가장 많이 방문한 페이지 5개가 메인페이지 주소 이하 url로 나열되어 그래프와 함께 나타냅니다.
-- 총 세션 수(방문자 수), 총 방문 횟수, 총 새로 고침 횟수, 총 이탈 횟수를 수치로 나타냅니다.
+- 총 세션 수(방문자 수), 총 페이지 방문 횟수, 총 페이지 새로고침 횟수, 총 페이지 이탈 횟수를 수치로 나타냅니다.
 - 가장 하단에 방문자들의 페이지 흐름을 시각화 하여 나타냅니다.
   - 사용자는 각 url 별로 분류된 방문 페이지 노드를 드래그 할 수 있습니다.
   - 각 노드(방문 페이지)는 이탈 횟수와 방문 횟수 수치를 나타냅니다.
@@ -299,6 +302,51 @@ handleLocationChange 함수는 페이지 위치 변경이 감지될 때마다 �
 
 <br />
 
+#### 3. 세션 스토리지를 통한 사용자 방문 여부 및 새로고침 판단
+
+사용자의 방문 여부와 새로고침 여부를 판단하는 것도 중요한 요소였습니다. 이는 세션 생성 및 페이지뷰 추적의 정확성을 높이는 데 기여합니다.</br>이를 위해서 세션 스토리지를 활용하여 세션을 관리하였습니다.
+
+- 세션 ID 관리 및 사용자 방문 여부 판단
+
+```javascript
+const sessionId = sessionStorage.getItem("sessionId") || null;
+const currentUrl = window.location.href;
+const pageTitle = window.location.pathname;
+const referrer = sessionStorage.getItem("referrer") || "";
+
+if (!sessionId && !isSessionCreating) {
+  isSessionCreating = true;
+
+  try {
+    const sessionResponse = await postData(
+      "https://api.flow-catcher.com/api/sessions",
+      { projectId },
+    );
+    sessionStorage.setItem("sessionId", sessionResponse.sessionId);
+    isSessionCreating = false;
+  } catch (error) {
+    isSessionCreating = false;
+    return;
+  }
+}
+
+try {
+  await postData("https://api.flow-catcher.com/api/pageviews", {
+    sessionId: sessionStorage.getItem("sessionId"),
+    url: currentUrl,
+    pageTitle,
+    referrer,
+    timestamp: new Date().toISOString(),
+  });
+
+  sessionStorage.setItem("referrer", currentUrl);
+}
+```
+
+이 코드는 세션 스토리지를 사용하여 현재 세션 ID를 저장하고, 사용자가 처음 방문했는지 또는 새로고침을 했는지 판단합니다. 세션 ID가 없으면 새로운 세션을 생성하고, 페이지뷰 데이터를 서버로 전송합니다. 또한, 현재 URL을 referrer로 저장하여 다음 페이지뷰 추적 시 사용할 수 있도록 합니다.
+
+<br />
+
 ### 1-4. 결과 회고: 페이지 이동 흐름 추적 회고
 
 ---
@@ -391,7 +439,7 @@ cron.schedule("*/5 * * * *", async () => {
 
   await Session.updateMany(
     { lastUpdated: { $lt: thresholdTime }, isActive: true },
-    { isActive: false },
+    { isActive: false }
   );
 });
 ```
@@ -475,7 +523,7 @@ async function checkInactiveSessions() {
   // DB에서 조건에 맞는 세션을 찾아 상태를 업데이트
   await Session.updateMany(
     { lastUpdated: { $lt: thresholdTime }, isActive: true },
-    { isActive: false },
+    { isActive: false }
   );
 }
 
@@ -654,7 +702,7 @@ function processPageViewData(sessions) {
         } else {
           linkCounts[linkKey] += 1;
           const linkIndex = links.findIndex(
-            (link) => link.source === source && link.target === target,
+            (link) => link.source === source && link.target === target
           );
           links[linkIndex].count = linkCounts[linkKey];
         }
@@ -696,7 +744,7 @@ function drawForceGraph({ nodes, links }) {
     .attr("stroke-width", 4)
     .attr("fill", "none")
     .attr("marker-end", (d) =>
-      d.isSelfLoop ? "url(#refresh-arrow)" : "url(#arrow)",
+      d.isSelfLoop ? "url(#refresh-arrow)" : "url(#arrow)"
     );
 
   const node = group
@@ -714,7 +762,7 @@ function drawForceGraph({ nodes, links }) {
         .drag()
         .on("start", dragstarted)
         .on("drag", dragged)
-        .on("end", dragended),
+        .on("end", dragended)
     );
 }
 ```
